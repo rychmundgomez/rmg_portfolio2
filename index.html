@@ -701,7 +701,7 @@
       <span>SCORE <span id="gScore" style="color:var(--gold);font-weight:500;">0</span></span>
       <span>BEST <span id="gBest" style="color:var(--muted);">0</span></span>
     </div>
-    <canvas id="gameCanvas" width="400" height="400" style="width:100%;border-radius:14px;background:radial-gradient(circle at 50% 45%,#15171d,#0a0b0e);border:1px solid var(--border);cursor:crosshair;display:block;"></canvas>
+    <canvas id="gameCanvas" width="400" height="500" style="width:100%;border-radius:14px;background:radial-gradient(circle at 50% 32%,#15171d,#0a0b0e);border:1px solid var(--border);cursor:crosshair;display:block;"></canvas>
     <div id="gOver" style="display:none;text-align:center;padding:16px;">
       <div style="font-weight:600;font-size:18px;margin-bottom:6px;">Game over</div>
       <div style="color:var(--muted);font-size:13.5px;margin-bottom:14px;">You scored <span id="gFinal" style="color:var(--gold);">0</span></div>
@@ -1118,6 +1118,7 @@ let openGame = () => {};
     finalEl.textContent = eng.score;
     overEl.style.display = 'block'; canvas.style.display = 'none';
     syncHud();
+    stop(); // halt the render loop while the game-over overlay is shown
   }
 
   function update(dt) {
@@ -1146,7 +1147,7 @@ let openGame = () => {};
       eng.pins.push({ offset, golden, color });
       eng.score += pts; burst(sx, sy, color, golden ? 20 : 10);
       eng.shakeTime = golden ? 0.18 : 0.08; eng.shakeMag = golden ? 5 : 2.5; eng.shot = null;
-      eng.popups.push({ x: sx, y: sy, life: 1, text: '+' + pts, color });
+      // (Per request: no floating "+10"/"+50" popup on a stuck pin — burst + shake only.)
       if (!eng.wonThisRun && eng.score >= WIN_SCORE) {
         eng.wonThisRun = true; eng.wins++; localStorage.setItem('dotshot-wins', eng.wins);
         eng.popups.push({ x: eng.hubX, y: eng.hubY, life: 1.4, text: 'WIN!', color: C.green });
@@ -1230,6 +1231,7 @@ let openGame = () => {};
     if (!last) last = ts;
     const dt = Math.min((ts - last) / 1000, 0.05); last = ts;
     update(dt); draw();
+    if (eng.gameOver || !eng.started) { raf = null; return; } // stop rescheduling once over
     raf = requestAnimationFrame(loop);
   }
   function run() { last = 0; cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); }
