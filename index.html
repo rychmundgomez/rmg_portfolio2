@@ -249,7 +249,10 @@
   kbd{ font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:2px 7px; color:var(--muted); }
 
   /* ---- Floating hero panels ---- */
-  .float-panel{ transition:transform .3s var(--ease); }
+  .float-panel{ transition:transform .3s var(--ease); animation:floaty 5s var(--ease) infinite; will-change:transform; }
+  .float-panel:nth-of-type(2){ animation-duration:6.2s; animation-delay:-2s; }
+  .float-panel:nth-of-type(3){ animation-duration:5.6s; animation-delay:-1s; }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
 
   /* ---- Timeline ---- */
   .tl-line{ background:linear-gradient(180deg,transparent,var(--border-strong) 8%,var(--border-strong) 92%,transparent); }
@@ -349,7 +352,7 @@
 <!-- ============================ HERO ============================ -->
 <section style="padding-top:150px; padding-bottom:70px;">
   <div class="wrap">
-    <div style="display:grid; gap:56px; grid-template-columns:1fr;" class="lg:grid-cols-[1.15fr_.85fr] lg:items-center">
+    <div style="display:grid; gap:56px;" class="lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
 
       <!-- Left: copy -->
       <div>
@@ -451,7 +454,7 @@
 <!-- ============================ ABOUT ============================ -->
 <section id="about" style="padding:80px 0;">
   <div class="wrap">
-    <div style="display:grid; gap:56px; grid-template-columns:1fr;" class="lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+    <div style="display:grid; gap:56px;" class="lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
 
       <!-- Photo -->
       <div class="reveal" style="position:relative;">
@@ -502,7 +505,7 @@
     </div>
 
     <div style="position:relative;max-width:820px;margin:0 auto;">
-      <div class="tl-line" style="position:absolute;left:19px;top:0;bottom:0;width:2px;" class="md:left-1/2"></div>
+      <div class="tl-line" style="position:absolute;left:19px;top:0;bottom:0;width:2px;"></div>
       <div id="timeline" style="display:flex;flex-direction:column;gap:14px;"></div>
     </div>
   </div>
@@ -511,14 +514,14 @@
 <!-- ============================ SKILLS ============================ -->
 <section id="skills" style="padding:80px 0;">
   <div class="wrap">
-    <div style="display:grid;gap:44px;grid-template-columns:1fr;" class="lg:grid-cols-[.8fr_1.2fr]">
+    <div style="display:grid;gap:44px;" class="lg:grid-cols-[0.8fr_1.2fr]">
       <div>
         <div class="reveal eyebrow" style="margin-bottom:18px;">Capabilities</div>
         <h2 class="reveal h-section text-grad" style="margin-bottom:20px;">A full-stack skill set — <span class="serif-i gold-grad">technical and creative.</span></h2>
         <p class="reveal lead" style="max-width:420px;">From production data pipelines to brand systems and motion — the range that lets me own a product from strategy through to the pixel.</p>
       </div>
 
-      <div class="reveal" style="display:grid;grid-template-columns:1fr;gap:16px;" class="sm:grid-cols-2">
+      <div class="reveal sm:grid-cols-2" style="display:grid;gap:16px;">
         <div class="glass rim card-hover" style="padding:24px;">
           <div style="display:flex;align-items:center;gap:11px;margin-bottom:16px;"><span style="width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:rgba(125,211,252,.12);border:1px solid rgba(125,211,252,.2);"><i data-lucide="code-2" style="width:18px;height:18px;color:#7DD3FC;"></i></span><h3 style="font-weight:600;font-size:16px;">Data & Technology</h3></div>
           <div style="display:flex;gap:7px;flex-wrap:wrap;" data-tags="Data Analysis,Google Apps Script,Google Sheets,JavaScript,HTML / CSS,React,Python,Tailwind CSS,Three.js,GSAP,Paystack,GA4"></div>
@@ -565,14 +568,14 @@
 
     <div class="reveal" id="galFilters" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:36px;"></div>
 
-    <div id="galGrid" style="columns:1;column-gap:16px;" class="sm:[columns:2] lg:[columns:3]"></div>
+    <div id="galGrid" style="column-gap:16px;" class="columns-1 sm:columns-2 lg:columns-3"></div>
   </div>
 </section>
 
 <!-- ============================ EDUCATION + INTERESTS ============================ -->
 <section style="padding:80px 0;">
   <div class="wrap">
-    <div style="display:grid;gap:44px;grid-template-columns:1fr;" class="lg:grid-cols-2">
+    <div style="display:grid;gap:44px;" class="lg:grid-cols-2">
 
       <!-- Education -->
       <div>
@@ -614,7 +617,7 @@
   <div class="wrap">
     <div class="reveal glass-strong rim" style="padding:0;overflow:hidden;border-radius:24px;position:relative;">
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 80% 50%,rgba(245,199,126,.12),transparent 70%);"></div>
-      <div style="display:grid;grid-template-columns:1fr;gap:0;position:relative;" class="md:grid-cols-[1.1fr_.9fr]">
+      <div style="display:grid;gap:0;position:relative;" class="md:grid-cols-[1.1fr_0.9fr]">
         <div style="padding:44px;">
           <div class="chip chip-gold" style="margin-bottom:20px;"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Playground · Featured</div>
           <h2 style="font-size:clamp(26px,3.5vw,38px);font-weight:600;letter-spacing:-.03em;margin-bottom:14px;">Dot Shot</h2>
@@ -640,7 +643,7 @@
 <!-- ============================ CONTACT ============================ -->
 <section id="contact" style="padding:80px 0;">
   <div class="wrap">
-    <div style="display:grid;gap:48px;grid-template-columns:1fr;" class="lg:grid-cols-[1fr_1fr]">
+    <div style="display:grid;gap:48px;" class="lg:grid-cols-[1fr_1fr]">
       <div>
         <div class="reveal eyebrow" style="margin-bottom:20px;">Contact</div>
         <h2 class="reveal h-section text-grad" style="margin-bottom:22px;">Let's build something <span class="serif-i gold-grad">worth shipping.</span></h2>
@@ -852,7 +855,7 @@ document.querySelectorAll('[data-tags]').forEach(c=>{
         ${linkEl}
       </div>`;
 
-    const row = el(`<div style="display:grid;grid-template-columns:1fr;gap:40px;align-items:center;" class="lg:grid-cols-2"></div>`);
+    const row = el(`<div style="display:grid;gap:40px;align-items:center;" class="lg:grid-cols-2"></div>`);
     row.innerHTML = alt ? body + media : media + body;
     // keep media first on mobile visually consistent: for alt rows on desktop swap order
     if(alt){ row.style.direction='ltr'; }
@@ -951,24 +954,28 @@ window.addEventListener('load', () => {
   if(reduceMotion){
     document.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'));
   } else {
-    // Hero intro (first reveals stagger)
-    const heroReveals = document.querySelectorAll('section:first-of-type .reveal');
+    // Robustly split hero reveals from the rest (no fragile :not selectors)
+    const allReveals = Array.from(document.querySelectorAll('.reveal'));
+    const heroSection = document.querySelector('main > section');
+    const heroReveals = allReveals.filter(n => heroSection && heroSection.contains(n));
+
+    // Hero intro (staggered)
     gsap.to(heroReveals, { opacity:1, y:0, duration:1, ease:'power3.out', stagger:0.09, onStart(){ heroReveals.forEach(r=>r.classList.add('in')); } });
 
-    // Section reveals
-    document.querySelectorAll('.reveal:not(section:first-of-type .reveal)').forEach(node=>{
-      ScrollTrigger.create({ trigger:node, start:'top 88%', once:true,
-        onEnter:()=>node.classList.add('in') });
+    // Scroll-triggered reveals for everything else
+    allReveals.filter(n => !heroReveals.includes(n)).forEach(node=>{
+      ScrollTrigger.create({ trigger:node, start:'top 88%', once:true, onEnter:()=>node.classList.add('in') });
     });
 
-    // Hero panel parallax
-    const panels = document.querySelectorAll('#heroPanels .float-panel');
-    window.addEventListener('pointermove', e=>{
-      const cx = (e.clientX/window.innerWidth - .5), cy = (e.clientY/window.innerHeight - .5);
-      panels.forEach(p=>{ const d=parseFloat(p.dataset.depth)||20; p.style.transform=`translate(${cx*d}px,${cy*d}px)`; });
-    });
-    // gentle idle float
-    panels.forEach((p,i)=> gsap.to(p,{ y:'+=12', duration:3+ i*0.4, ease:'sine.inOut', repeat:-1, yoyo:true }));
+    // Hero cluster parallax — applied to the CONTAINER; individual panels
+    // float via CSS keyframes, so the two transforms never fight.
+    const heroPanels = document.getElementById('heroPanels');
+    if(heroPanels){
+      window.addEventListener('pointermove', e=>{
+        const cx = (e.clientX/window.innerWidth - .5), cy = (e.clientY/window.innerHeight - .5);
+        heroPanels.style.transform = `translate(${cx*16}px,${cy*16}px)`;
+      });
+    }
   }
 
   // Count-up stats
